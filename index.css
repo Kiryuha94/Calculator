@@ -1,0 +1,59 @@
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.warapper {
+  margin: 15rem auto;
+  background: rgb(51, 133, 226);
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.display_input {
+  display: inline-block;
+  width: 44rem;
+  height: 5rem;
+  border-radius: 10px;
+  background: rgb(8, 8, 8);
+  color: rgb(255, 255, 255);
+  text-align: right;
+  margin: 2rem 0 3rem;
+  font-size: 2.5rem;
+  padding-right: 0.5rem;
+}
+
+.calc-button {
+  margin: 0 auto;
+}
+
+table {
+  border-spacing: 1.7rem 1.7rem;
+}
+
+button {
+  border-radius: 5px;
+  width: 8rem;
+  height: 5rem;
+  background: rgb(245, 208, 160);
+  font-size: 2rem;
+  cursor: pointer;
+  outline: 0;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+.eqals {
+  height: 12rem;
+}
+
+.zero {
+  width: 18rem;
+}
