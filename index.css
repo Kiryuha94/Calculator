@@ -5,8 +5,8 @@ html {
   box-sizing: border-box;
 }
 
-.warapper {
-  margin: 15rem auto;
+.wrapper {
+  margin: 10rem auto;
   background: rgb(51, 133, 226);
   width: 50rem;
   display: flex;
@@ -33,7 +33,7 @@ html {
 }
 
 table {
-  border-spacing: 1.7rem 1.7rem;
+  border-spacing: 1.7rem;
 }
 
 button {
@@ -50,7 +50,7 @@ button:hover {
   transform: scale(1.1);
 }
 
-.eqals {
+.equals {
   height: 12rem;
 }
 

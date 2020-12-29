@@ -7,28 +7,46 @@ document.addEventListener('DOMContentLoaded', () => {
   let currValue = 0
   let currentOperator = ''
   let isNewNumber = false
+  const OPERATORS = {
+    plus: '+',
+    minus: '-',
+    multiply: '*',
+    devide: '/',
+    equals: '=',
+  }
+  
+  const pressOperation = (el) => {
+    let localMemory = display.value
+    if (isNewNumber && currentOperator !== '=') {
+      display.value = currValue
+    } else {
+      isNewNumber = true
+      switch (currentOperator) {
+        case '+':
+          currValue += +localMemory
+          break
+        case '-':
+          currValue -= +localMemory
+          break
+        case '*':
+          currValue *= +localMemory
+          break
+        case '/':
+          currValue /= +localMemory
+          break
+        default:
+          currValue = +localMemory
+      }
+      display.value = currValue
+      currentOperator = el
+    }
+  }
 
   operatorBtn.forEach((el) =>
     el.addEventListener('click', (e) => {
       pressOperation(e.target.textContent)
     })
   )
-
-  numberBtn.forEach((el) =>
-    el.addEventListener('click', (e) => {
-      pressNum(e.target.textContent)
-    })
-  )
-
-  clearBtn.forEach((el) =>
-    el.addEventListener('click', (e) => {
-      pressClearBtn(e.target.textContent)
-    })
-  )
-
-  pointBtn.addEventListener('click', (e) => {
-    pressOnPoint(e.target.id)
-  })
 
   const pressNum = (el) => {
     if (isNewNumber) {
@@ -40,40 +58,68 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const pressOperation = (el) => {
-    let localMemory = display.value
+  numberBtn.forEach((el) =>
+    el.addEventListener('click', (e) => {
+      pressNum(e.target.textContent)
+    })
+  )
 
-    if (isNewNumber && currentOperator !== '=') {
-      display.value = currValue
-    } else {
-      isNewNumber = true
-      if (currentOperator === '+') currValue += +localMemory
-      else if (currentOperator === '-') currValue -= +localMemory
-      else if (currentOperator === '*') currValue *= +localMemory
-      else if (currentOperator === '/') currValue /= +localMemory
-      else currValue = +localMemory
-      display.value = currValue
-      currentOperator = el
-    }
+  const KEYS = {
+    C: 'C',
+    CE: 'CE',
   }
 
   const pressClearBtn = (el) => {
-    if (el === 'C') {
+    if (el === KEYS.C) {
       display.value = 0
       currValue = 0
-    } else if (el === 'CE') {
+    } else if (el === KEYS.CE) {
       display.value = '0'
       isNewNumber = true
     }
   }
 
-  const pressOnPoint = (el) => {
-    console.log(el)
+  clearBtn.forEach((el) =>
+    el.addEventListener('click', (e) => {
+      pressClearBtn(e.target.textContent)
+    })
+  )
+
+  const pressOnPoint = () => {
     if (isNewNumber) {
       display.value = '0.'
       isNewNumber = false
-    } else if (el === 'point') {
+    } else {
       display.value += '.'
     }
   }
+
+  pointBtn.addEventListener('click', () => {
+    pressOnPoint()
+  })
+
+  document.addEventListener('keydown', (key) => {
+    console.log(key)
+    const maybeNumber = +key.key
+    const maybeOperator = key.key
+    const arrOper = Object.values(OPERATORS)
+    if (!Number.isNaN(maybeNumber)) {
+      pressNum(String(maybeNumber))
+    } else {
+      if (arrOper.includes(maybeOperator)) {
+        pressOperation(maybeOperator)
+      } else {
+        switch (maybeOperator) {
+          case 'Enter':
+            pressOperation(OPERATORS.equals)
+            break
+          case '.':
+            pressOnPoint()
+            break
+          default:
+            break
+        }
+      }
+    }
+  })
 })
