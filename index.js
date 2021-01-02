@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     devide: '/',
     equals: '=',
   }
-  
+
   const pressOperation = (el) => {
     let localMemory = display.value
     if (isNewNumber && currentOperator !== '=') {
@@ -99,17 +99,15 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   document.addEventListener('keydown', (key) => {
-    console.log(key)
     const maybeNumber = +key.key
-    const maybeOperator = key.key
     const arrOper = Object.values(OPERATORS)
     if (!Number.isNaN(maybeNumber)) {
       pressNum(String(maybeNumber))
     } else {
-      if (arrOper.includes(maybeOperator)) {
-        pressOperation(maybeOperator)
+      if (arrOper.includes(key.key)) {
+        pressOperation(key.key)
       } else {
-        switch (maybeOperator) {
+        switch (key.key) {
           case 'Enter':
             pressOperation(OPERATORS.equals)
             break
