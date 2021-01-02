@@ -94,11 +94,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  pointBtn.addEventListener('click', () => {
-    pressOnPoint()
-  })
-
+  pointBtn.addEventListener('click', pressOnPoint)
   document.addEventListener('keydown', (key) => {
+    document.activeElement.blur()
     const maybeNumber = +key.key
     const arrOper = Object.values(OPERATORS)
     if (!Number.isNaN(maybeNumber)) {
