@@ -70,12 +70,14 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const pressClearBtn = (el) => {
+    let isPressClearBtn = false
     if (el === KEYS.C) {
       display.value = 0
       currValue = 0
     } else if (el === KEYS.CE) {
       display.value = '0'
       isNewNumber = true
+      isPressClearBtn = false
     }
   }
 
@@ -95,24 +97,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   pointBtn.addEventListener('click', pressOnPoint)
+
   document.addEventListener('keydown', (key) => {
     document.activeElement.blur()
-    const maybeNumber = +key.key
+    const currentKey = key.key
     const arrOper = Object.values(OPERATORS)
-    if (!Number.isNaN(maybeNumber)) {
-      pressNum(String(maybeNumber))
+    if (!Number.isNaN(+currentKey)) {
+      pressNum(String(+currentKey))
     } else {
-      if (arrOper.includes(key.key)) {
-        pressOperation(key.key)
+      if (arrOper.includes(currentKey)) {
+        pressOperation(currentKey)
       } else {
-        switch (key.key) {
+        switch (currentKey) {
           case 'Enter':
             pressOperation(OPERATORS.equals)
             break
           case '.':
             pressOnPoint()
             break
-          default:
+            case 'Delete':
+             pressClearBtn(KEYS.C)           
+               break
+            case 'Backspace':
+              pressClearBtn(KEYS.CE)           
+              break
+            default:
             break
         }
       }
