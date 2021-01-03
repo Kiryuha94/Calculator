@@ -70,14 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const pressClearBtn = (el) => {
-    let isPressClearBtn = false
     if (el === KEYS.C) {
       display.value = 0
       currValue = 0
     } else if (el === KEYS.CE) {
       display.value = '0'
       isNewNumber = true
-      isPressClearBtn = false
     }
   }
 
@@ -115,13 +113,13 @@ document.addEventListener('DOMContentLoaded', () => {
           case '.':
             pressOnPoint()
             break
-            case 'Delete':
-             pressClearBtn(KEYS.C)           
-               break
-            case 'Backspace':
-              pressClearBtn(KEYS.CE)           
-              break
-            default:
+          case 'Delete':
+            pressClearBtn(KEYS.C)
+            break
+          case 'Backspace':
+            pressClearBtn(KEYS.CE)
+            break
+          default:
             break
         }
       }
