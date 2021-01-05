@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     pointBtn = document.getElementById('point'),
     clearBtn = document.querySelectorAll('.clear-btn'),
     display = document.getElementById('display')
-  let currValue = 0
-  let currentOperator = ''
-  let isNewNumber = false
+  let currValue = 0,
+    currentOperator = '',
+    isNewNumber = false
+
   const OPERATORS = {
     plus: '+',
     minus: '-',
@@ -38,8 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
           currValue = +localMemory
       }
       display.value = currValue
-      currentOperator = el
     }
+    currentOperator = el
   }
 
   operatorBtn.forEach((el) =>
@@ -71,11 +72,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const pressClearBtn = (el) => {
     if (el === KEYS.C) {
-      display.value = 0
-      currValue = 0
-    } else if (el === KEYS.CE) {
       display.value = '0'
+      currValue = 0
       isNewNumber = true
+      currentOperator = ''
+    } else if (el === KEYS.CE) {
+      display.value = display.value.length > 1 ? display.value.slice(0, -1) : '0'
     }
   }
 
