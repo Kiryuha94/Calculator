@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     equals: '=',
   }
 
+  const arrOper = Object.values(OPERATORS)
   const pressOperation = (el) => {
     let localMemory = display.value
     if (isNewNumber && currentOperator !== '=') {
@@ -105,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('keydown', (key) => {
     document.activeElement.blur()
     const currentKey = key.key
-    const arrOper = Object.values(OPERATORS)
     if (!Number.isNaN(+currentKey)) {
       pressNum(String(+currentKey))
     } else {
