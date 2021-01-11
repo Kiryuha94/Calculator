@@ -24,16 +24,16 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       isNewNumber = true
       switch (currentOperator) {
-        case '+':
+        case OPERATORS.plus:
           currValue += +localMemory
           break
-        case '-':
+        case OPERATORS.minus:
           currValue -= +localMemory
           break
-        case '*':
+        case OPERATORS.multiply:
           currValue *= +localMemory
           break
-        case '/':
+        case OPERATORS.devide:
           currValue /= +localMemory
           break
         default:
@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
       display.value = el
       isNewNumber = false
     } else {
-      if (display.value === '0') display.value = el
-      else display.value += el
+      display.value === '0' ? display.value = el : display.value += el
     }
   }
 
@@ -81,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
       display.value = display.value.length > 1 ? display.value.slice(0, -1) : ''
      if (isNewNumber === true) {
        currValue = +display.value
-       isNewNumber = true
      }
     }
   }
