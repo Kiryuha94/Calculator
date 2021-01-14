@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       currentOperator = ''
     } else if (el === KEYS.CE) {
       display.value = display.value.length > 1 ? display.value.slice(0, -1) : ''
-     if (isNewNumber === true) {
+     if (isNewNumber) {
        currValue = +display.value
      }
     }
